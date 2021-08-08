@@ -17,7 +17,7 @@ type Person struct {
 }
 
 func NewPerson(firstName, lastName string) Person {
-	return Person {
+	return Person{
 		firstName: firstName,
 		lastName:  lastName,
 	}
@@ -27,7 +27,7 @@ func (p Person) fullName() string {
 	return fmt.Sprintf("%s %s", p.firstName, p.lastName)
 }
 
-func (p Person) setTwitterHandler(handler string) error {
+func (p *Person) setTwitterHandler(handler string) error {
 	if len(handler) == 0 {
 		p.twitterHandler = handler
 	} else if !strings.HasPrefix(handler, "@") {
@@ -36,4 +36,8 @@ func (p Person) setTwitterHandler(handler string) error {
 
 	p.twitterHandler = handler
 	return nil
+}
+
+func (p Person) TwitterHandler() string {
+	return p.twitterHandler
 }
